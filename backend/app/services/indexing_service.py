@@ -3,7 +3,7 @@ import pickle
 from pathlib import Path
 
 import chromadb
-from llama_index.core import Document, Settings as LlamaSettings, VectorStoreIndex
+from llama_index.core import Document, Settings as LlamaSettings, StorageContext, VectorStoreIndex
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 from app.chunkers.code_splitter import get_code_nodes
@@ -37,7 +37,8 @@ def index_codebase(directory: str) -> int:
     client = chromadb.PersistentClient(path=settings.VECTOR_STORE_PATH)
     collection = client.get_or_create_collection(settings.CHROMA_COLLECTION)
     vector_store = ChromaVectorStore(chroma_collection=collection)
-    VectorStoreIndex(nodes=all_nodes, vector_store=vector_store)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    VectorStoreIndex(nodes=all_nodes, storage_context=storage_context)
 
     nodes_path = os.path.join(settings.VECTOR_STORE_PATH, "nodes.pkl")
     with open(nodes_path, "wb") as file:

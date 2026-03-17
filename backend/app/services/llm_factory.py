@@ -6,7 +6,13 @@ def get_llm():
     if provider == "ollama":
         from llama_index.llms.ollama import Ollama
 
-        return Ollama(model=settings.OLLAMA_MODEL, base_url=settings.OLLAMA_BASE_URL)
+        return Ollama(
+            model=settings.OLLAMA_MODEL,
+            base_url=settings.OLLAMA_BASE_URL,
+            request_timeout=settings.OLLAMA_REQUEST_TIMEOUT,
+            keep_alive=settings.OLLAMA_KEEP_ALIVE,
+            context_window=settings.OLLAMA_CONTEXT_WINDOW,
+        )
     if provider == "openai":
         from llama_index.llms.openai import OpenAI
 

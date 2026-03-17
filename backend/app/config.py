@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     LLM_PROVIDER: str = "ollama"
     OLLAMA_MODEL: str = "qwen2.5-coder:7b"
     OLLAMA_BASE_URL: str = "http://ollama:11434"
+    OLLAMA_REQUEST_TIMEOUT: float = 300.0
+    OLLAMA_KEEP_ALIVE: str = "30m"
+    OLLAMA_CONTEXT_WINDOW: int = 4096
     OPENAI_API_KEY: str = ""
     ANTHROPIC_API_KEY: str = ""
     ANTHROPIC_MODEL: str = "claude-sonnet-4-5"
