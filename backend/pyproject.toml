@@ -7,6 +7,7 @@ dependencies = [
     "uvicorn[standard]>=0.30.0",
     "python-dotenv>=1.0.0",
     "pydantic-settings>=2.0.0",
+    "transformers<5",
     "llama-index-core>=0.11.0",
     "llama-index-llms-ollama>=0.3.0",
     "llama-index-embeddings-huggingface>=0.3.0",
