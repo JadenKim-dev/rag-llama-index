@@ -25,4 +25,4 @@ class BasicRAGService(BaseRAGService):
             {"file_path": node.metadata.get("file_path", "unknown"), "text": node.text[:200]}
             for node in response.source_nodes
         ]
-        return {"response": str(response.response), "sources": sources}
+        return {"response": str(response), "sources": sources}
