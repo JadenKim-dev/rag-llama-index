@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 
@@ -10,7 +12,7 @@ router = APIRouter()
 
 @router.post("/chat")
 async def chat(request: ChatRequest) -> StreamingResponse:
-    pipeline = await __import__("asyncio").to_thread(get_pipeline, request.pipeline)
+    pipeline = await asyncio.to_thread(get_pipeline, request.pipeline)
     result = await pipeline.aquery(request.message)
     stub_response = result["response"]
     return StreamingResponse(
